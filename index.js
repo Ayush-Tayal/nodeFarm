@@ -1,6 +1,7 @@
 const fs = require('fs');
 const http = require('http');
-const url = require('url')
+const url = require('url');
+const replacePlaceholders = require('./modules/replacePlaceholders')
 
 // Blocking code
 // const fileIn = fs.readFileSync('./txt/input.txt','utf-8');
@@ -23,20 +24,6 @@ const url = require('url')
 const tempOverview = fs.readFileSync(`${__dirname}/templates/overview.html`, 'utf-8');
 const tempCard = fs.readFileSync(`${__dirname}/templates/card.html`, 'utf-8');
 const tempProduct = fs.readFileSync(`${__dirname}/templates/product.html`, 'utf-8');
-
-const replacePlaceholders = (temp, product) => {
-    let output = temp.replace(/{%image%}/g, product.image);
-    output = output.replace(/{%productName%}/g, product.productName);
-    output = output.replace(/{%price%}/g, product.price);
-    output = output.replace(/{%from%}/g, product.from);
-    output = output.replace(/{%nutrients%}/g, product.nutrients);
-    output = output.replace(/{%quantity%}/g, product.quantity);
-    output = output.replace(/{%description%}/g, product.description);
-    output = output.replace(/{%id%}/g, product.id);
-
-    if(!product.organic) output = output.replace(/{%notOrganic%}/g, 'not-organic');
-    return output;
-}
 
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const devData = JSON.parse(data);
