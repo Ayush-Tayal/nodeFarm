@@ -1,7 +1,8 @@
 const fs = require('fs');
 const http = require('http');
 const url = require('url');
-const replacePlaceholders = require('./modules/replacePlaceholders')
+const replacePlaceholders = require('./modules/replacePlaceholders');
+const slugify = require('slugify');
 
 // Blocking code
 // const fileIn = fs.readFileSync('./txt/input.txt','utf-8');
@@ -65,9 +66,6 @@ const server = http.createServer((req, res) => {
         res.end('<h1> Page Not Found </h1>')
     }
 })
-
-
-
 
 
 
